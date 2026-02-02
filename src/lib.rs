@@ -3159,10 +3159,10 @@ impl TryFrom<Locale> for LocaleFile {
     type Error = ();
 
     fn try_from(value: Locale) -> Result<Self, Self::Error> {
-        if value.lang.is_some() {
+        if let Some(lang) = value.lang {
             Ok(Self {
                 version: "1.0".to_string(),
-                lang: value.lang.unwrap(),
+                lang,
                 info: value.info,
                 terms: value.terms,
                 date: value.date,
